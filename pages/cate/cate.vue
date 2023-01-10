@@ -1,5 +1,7 @@
 <template>
 	<view>
+		<!-- 使用自定义的搜索组件 -->
+		<my-search @click="gotoSearch"></my-search>
 		<view class="scroll-view-container">
 			<!-- 左侧的滑动区域 -->
 			<scroll-view class="left-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
@@ -40,7 +42,7 @@
 		
 		onLoad() {
 			const sysinfo = uni.getSystemInfoSync()
-			this.wh = sysinfo.windowHeight
+			this.wh = sysinfo.windowHeight - 50
 			
 			this.getCateList()
 		},
@@ -65,6 +67,13 @@
 			gotoGoodsList(item){
 				uni.navigateTo({
 					url: '/subpkg/goods_list/goods_list?cid=' + item.cat_id
+				})
+			},
+			
+			//跳转到搜索页面
+			gotoSearch() {
+				uni.navigateTo({
+					url:'/subpkg/search/search'
 				})
 			}
 		}
